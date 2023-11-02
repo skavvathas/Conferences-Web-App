@@ -1,0 +1,314 @@
+/* google font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,500&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css');
+
+body {
+    background: #ffffff;
+    margin: 0;
+    /*font-family: 'Montserrat', sans-serif;*/
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+header {
+    background-color: #5eecea;
+    color:#eefdf8;
+    border-bottom: thick double #040304;
+    width: 25%;
+    height: 100%;
+}
+
+header .container {
+    width: 400px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+header .button {
+    padding: 10px
+}
+
+header a {
+    color:#eefdf8;
+    text-decoration: none;
+    font-size: x-large;
+}
+
+/* home */
+
+.titles{
+    font-size: x-large;
+}
+
+/* */
+.center {
+    margin-top: 10%;
+    text-align: center;
+}
+
+.wrapper {
+    position: relative;
+}
+
+/* The sidebar menu */
+.sidebar {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 25%; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    background-color: #ffffff; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+    color: black;
+    border-right: 5px solid rgba(0, 0, 0, 0.133);
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    right: 0;
+    border-left: 5px solid rgba(0, 0, 0, 0.133);
+}
+
+    /* The navigation menu links */
+
+    /* Style page content */
+.main {
+    margin-left: 25%; /* Same as the width of the sidebar */
+    width: 50%;
+    padding: 0px 10px;
+}
+
+.twitter-button {
+    background-color: #131719;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 4px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+
+.white-text {
+    color: #fff; /* sets font color to white */
+    font-size: 30px;
+}
+
+.white-text2 {
+    color: #fff; /* sets font color to white */
+    font-size: 15px;
+}
+
+
+/* for the user's image */
+.circular-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid gray;
+    overflow: hidden;
+    position: relative;
+  }
+  
+.circular-form input[type="file"] {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+  
+.circular-form button {
+    margin-top: 10px;
+}
+
+/* dialog in the edit */
+dialog {
+    position: fixed;
+    z-index: 9999;
+    top: 200px;
+    left: 50%;
+    transform: translate(-50%, -15%);
+    background: rgb(239, 240, 242);
+    border: none;
+    border-radius: 2rem;
+    border: solid 2px rgb(203, 255, 255);
+    width: 50%;
+    height: 600px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+dialog::backdrop {
+    background-color: hsla(333, 56%, 32%, 0.25);
+}
+
+/**/
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #5eecea;
+}
+
+.avatar img {
+width: 100%;
+height: auto;
+} 
+
+/**/
+
+
+::selection{
+    color: #fff;
+    background: #1da1f2;
+}
+
+
+
+.input-box{
+    padding-top: 10px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.input-box .tweet-area{
+    position: relative;
+    min-height: 130px;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.tweet-area::-webkit-scrollbar{
+    width: 0px;
+}
+
+.tweet-area .placeholder{
+    position: absolute;
+    margin-top: -3px;
+    font-size: 22px;
+    color: #98A5B1;
+    pointer-events: none;
+}
+
+.tweet-area .input{
+    outline: none;
+    font-size: 17px;
+    min-height: inherit;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.tweet-area .editable{
+    position: relative;
+    z-index: 5;
+}
+
+.tweet-area .readonly{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    color: transparent;
+    background: transparent;
+}
+
+.readonly .highlight{
+    background: #fd9bb0;
+}
+
+.input-box .privacy{
+    color: #1da1f2;
+    margin: 15px 0;
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.privacy:hover, .icons li:hover{
+    background: #e7f5fe;
+}
+
+.privacy i{
+    font-size: 18px;
+}
+
+.privacy span{
+    font-size: 15px;
+    font-weight: 600;
+    margin-left: 7px;
+}
+
+.bottom{
+    display: flex;
+    margin-top: 13px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bottom .icons{
+    display: inline-flex;
+}
+
+.icons li{
+    list-style: none;
+    color: #1da1f2;
+    font-size: 20px;
+    margin: 0 2px;
+    height: 38px;
+    width: 38px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+}   
+
+.bottom .content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottom .counter{
+    color: #333;
+    display: none;
+    font-weight: 500;
+    margin-right: 15px;
+    padding-right: 15px;
+    border-right: 1px solid #aab8c2;
+}
+
+
+/* sticky */
+.sticky{
+    position: sticky;
+    top: 0;
+    height: 70px;
+    background-color: rgb(247, 247, 247);
+    opacity: 0.9;
+    color: #040304;
+    font-size: large;
+    border-bottom: 1px solid black;
+    padding-top: 15px;
+    padding-left: 3px;
+    font-weight: bold;
+}
