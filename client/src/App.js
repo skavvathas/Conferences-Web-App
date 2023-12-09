@@ -8,26 +8,38 @@ import Conferences from "./pages/Conferences";
 import ViewConferences from "./pages/ViewConferences";
 import CreateConference from "./pages/CreateConference";
 import Paper from "./pages/Paper";
+import PaperExcel from "./pages/PaperExcel";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
 import UploadReviewers from "./pages/UploadReviewers";
+import ReviewersExcel from "./pages/ReviewersExcel";
+import ReviewersHand from "./pages/ReviewersHand";
+import { useAuthContext } from "./hooks/useAuthContext";
+import Conf from "./pages/Conf";
 
 function App() {
+
+  const {user} = useAuthContext(); 
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Select />} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/conferences" element={<Conferences />} />
-        <Route path="/viewconferences" element={<ViewConferences />} />
-        <Route path="/createconference" element={<CreateConference />} />
-        <Route path="/paper" element={<Paper />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/uploadreviewers" element={<UploadReviewers />} />
+        <Route path="/" element={!user ? <Select /> : <Navigate to="/home"/>} />
+        <Route path="/login" element={!user ? <Login/> : <Navigate to="/home"/>} />
+        <Route path="/register" element={!user ? <Register /> : <Navigate to="/home"/>} />
+        <Route path="/home" element={user ? <Home /> : <Navigate to="/" />} />
+        <Route path="/conferences" element={user ? <Conferences /> : <Navigate to="/" />} />
+        <Route path="/conferences/:acronym/:conferenceId" element={user ? <Conf /> : <Navigate to="/" />}/>
+        <Route path="/viewconferences" element={user ? <ViewConferences /> : <Navigate to="/" />} />
+        <Route path="/createconference" element={user ? <CreateConference /> : <Navigate to="/" />} />
+        <Route path="/paper" element={user ? <Paper /> : <Navigate to="/" />} />
+        <Route path="/about" element={user ? <About /> : <Navigate to="/" />} />
+        <Route path="/profile" element={user ? <Profile /> : <Navigate to="/" />} />
+        <Route path="/uploadreviewers" element={user ? <UploadReviewers /> : <Navigate to="/" />} />
+        <Route path="/addreviewersexcel/:id" element={user ? <ReviewersExcel /> : <Navigate to="/" />} />
+        <Route path="/addreviewershand/:id" element={user ? <ReviewersHand /> : <Navigate to="/" />} />
+        <Route path="/addpaper/:id" element={user ? <Paper /> : <Navigate to="/" />} />
+        <Route path="/addpaperexcel/:id" element={user ? <PaperExcel /> : <Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );

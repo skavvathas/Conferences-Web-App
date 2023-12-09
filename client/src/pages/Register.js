@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import {useRegister} from "../hooks/useRegister";
 
 // rendered in the /register route
 export default function Register() {
@@ -12,7 +13,7 @@ export default function Register() {
     username: "",
     password: "",
   });
-  //const {register, error, isLoading} = useRegister();
+  const {register, error, isLoading} = useRegister();
   const navigate = useNavigate();
 
   function handleChangeRegister(event){
@@ -56,7 +57,7 @@ export default function Register() {
     e.preventDefault()
     navigate("/home")
     // Here we use the useRegister hook from /hooks/useRegister.js file
-    //await register(regUser.firstName, regUser.lastName, regUser.email, regUser.username, regUser.password); 
+    await register(regUser.firstName, regUser.lastName, regUser.email, regUser.username, regUser.password);
   }
 
   return (
@@ -71,30 +72,27 @@ export default function Register() {
                 </h1>
                 <form action="" method="post" className="" onSubmit={handleSubmit}>
                   <div className="mb-3">
-                    
-                    <input 
-                      onChange={handleChangeRegister} 
-                      name="firstName" 
-                      placeholder="First Name" 
-                      value={regUser.firstName}  
-                      required 
+                    <input
+                      onChange={handleChangeRegister}
+                      name="firstName"
+                      placeholder="First Name"
+                      value={regUser.firstName}
+                      required
                       className="form-control"
                     />
                   </div>
 
                   <div className="mb-3">
-                    
-                    <input 
-                      onChange={handleChangeRegister} 
-                      name="lastName" 
-                      placeholder="Last Name" 
-                      value={regUser.lastName}  
+                    <input
+                      onChange={handleChangeRegister}
+                      name="lastName"
+                      placeholder="Last Name"
+                      value={regUser.lastName}
                       required
                       className="form-control"
                     />
                   </div>
                   <div className="mb-3">
-                    
                     <input 
                       onChange={handleChangeRegister} 
                       name="email" 
@@ -106,7 +104,6 @@ export default function Register() {
                     />
                   </div>
                   <div className="mb-3">
-                    
                     <input 
                       onChange={handleChangeRegister} 
                       name="username" 
@@ -117,7 +114,6 @@ export default function Register() {
                     />
                   </div>
                   <div className="mb-3">
-                    
                     <input 
                       onChange={handleChangeRegister}
                       name="password" 
@@ -130,7 +126,7 @@ export default function Register() {
                   </div>
                   
 
-                  <button name="Submit" onClick={isAllValid} className="btn btn-primary" /*disabled={isLoading}*/>Register</button>
+                  <button name="Submit" onClick={isAllValid} className="btn btn-primary" disabled={isLoading}>Register</button>
                   {/*error && <div className="">{error}</div>*/}
                 </form>
                 <h3 className="mb-3" style={{marginTop: "20px", fontSize: "1.2em"}}>

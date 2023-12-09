@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import './Home.css';
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { Link } from 'react-router-dom';
 
 // rendered in the /home route
 export default function Home(){
   //const {user} = useAuthContext();
   const [posts, setPosts] = useState([]);
-
+  const {user} = useAuthContext(); 
 
   useEffect(() => {
     
@@ -20,18 +22,17 @@ export default function Home(){
       <div className="main" style={{ height: '100vh' }}>
         <div className="container my-5">
           <div className="p-5 text-center bg-body-tertiary rounded-3">
-            <svg className="bi mt-4 mb-3" width="100" height="100"></svg>
-            <h1 className="text-body-emphasis">Conferences</h1>
-            <p className="col-lg-8 mx-auto fs-5 text-muted">
-              This is a custom jumbotron featuring an SVG image at the top, some longer text that wraps early thanks to a responsive <code>.col-*</code> className, and a customized call to action.
+            <h1 className="text-body-emphasis">Hello {user.user[0].username} ({user.user[0].userId})</h1>
+            <p className="col-lg-8 mx-auto fs-5 text-muted" style={{height: "20vh"}}>
+              Welcome to the Web-based Reccomendation System for Scientific Conferences!
             </p>
             <div className="d-inline-flex gap-2 mb-5">
-              <button className="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill" type="button">
+              <Link to="/createconference" className="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill">
                 Create a new Conference
-              </button>
-              <button className="btn btn-outline-secondary btn-lg px-4 rounded-pill" type="button">
-                Secondary link
-              </button>
+              </Link>
+              <Link to="/viewconferences" className="btn btn-outline-secondary btn-lg px-4 rounded-pill">
+                View your Conferences
+              </Link>
             </div>
           </div>
         </div>

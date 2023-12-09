@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './Home.css';
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { Link } from 'react-router-dom';
 
 const Conferences = () => {
   return (
@@ -14,7 +15,7 @@ const Conferences = () => {
                 <div className="card-body">
                     <h5 className="card-title">See the list with all your current conferences.</h5>
                     <p className="card-text">Select the one that you want to view.</p>
-                    <a href="/viewconferences" className="btn btn-dark">View</a>
+                    <Link to="/viewconferences" className="btn btn-dark">View</Link>
                 </div>
             </div>
             <div className="card">
@@ -22,7 +23,7 @@ const Conferences = () => {
                 <div className="card-body">
                     <h5 className="card-title ">Begin a new conference </h5>
                     <p className="card-text">Add papers and reviewers to your conference.</p>
-                    <a href="/createconference" className="btn btn-dark">Create</a>
+                    <Link to="/createconference" className="btn btn-dark">Create</Link>
                 </div>
             </div>
         </div>

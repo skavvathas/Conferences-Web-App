@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-//import { useLogin } from "../hooks/useLogin";
+import { useLogin } from "../hooks/useLogin";
 
 // rendered in the /login route
 export default function Login() {
@@ -10,7 +10,7 @@ export default function Login() {
     username: "",
     password: ""
   });
-  //const {login, error, isLoading} = useLogin();
+  const {login, error, isLoading} = useLogin();
   const navigate = useNavigate();
 
   function handleChangeLogin(event){
@@ -31,7 +31,7 @@ export default function Login() {
     e.preventDefault()
     navigate("/home")
     // Here we use the useRegister hook from /hooks/useRegister.js file
-    //await login(logUser.username, logUser.password); 
+    await login(logUser.username, logUser.password); 
   }
 
 
