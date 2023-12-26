@@ -1,11 +1,19 @@
 .button-container {
-    display: flex;            /* Enables flexbox */
-    flex-direction: column;   /* Stack items vertically */
-    align-items: center;      /* Center items horizontally */
-    justify-content: center;  /* Center items vertically */
+    display: grid;
     margin-top: 30px;
+    margin-left: 60px;
+    gap: 40px;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .button1{
     margin-bottom: 15px;
+}
+
+.centered{
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }

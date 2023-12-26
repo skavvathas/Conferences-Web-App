@@ -15,13 +15,13 @@ const Profile = () => {
   return (
     <div>
       <Header/>
-      <div className="container d-flex justify-content-center" style={{marginTop: "30px", marginBottom: "100px", height: '100vh' }}>
+      <div className="container d-flex justify-content-center" style={{marginTop: "30px", marginBottom: "250px", height: '50vh' }}>
         <div className="card2 p-3 py-4">
           <div className="text-center">
-            <img src="https://i.imgur.com/stD0Q19.jpg" width="100" className="rounded-circle"/>
-            <h3 className="mt-2">{user.user.firstName} {user.user.lastName}</h3>
-            <span className="mt-1 clearfix">{user.user.email}</span>
-            
+            <img src="https://static.thenounproject.com/png/5034901-200.png" width="100" className="rounded-circle"/>
+            <h3 className="mt-2">{user.user[0].firstName} {user.user[0].lastName}</h3>
+            <span className="mt-1 clearfix">{user.user[0].username}</span>
+            <span className="mt-1 clearfix">{user.user[0].email}</span>
             <div className="row mt-3 mb-3">
               <div>
                 <h5>Conferences</h5>

@@ -9,6 +9,7 @@ import ViewConferences from "./pages/ViewConferences";
 import CreateConference from "./pages/CreateConference";
 import Paper from "./pages/Paper";
 import PaperExcel from "./pages/PaperExcel";
+import PaperNew from "./pages/PaperNew";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
 import UploadReviewers from "./pages/UploadReviewers";
@@ -40,6 +41,7 @@ function App() {
         <Route path="/addreviewershand/:id" element={user ? <ReviewersHand /> : <Navigate to="/" />} />
         <Route path="/addpaper/:id" element={user ? <Paper /> : <Navigate to="/" />} />
         <Route path="/addpaperexcel/:id" element={user ? <PaperExcel /> : <Navigate to="/" />} />
+        <Route path="/addpapernew/:id" element={user ? <PaperNew /> : <Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );

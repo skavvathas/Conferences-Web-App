@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className="container" style={{ borderTop: "0.2rem solid black"}}>
+    <footer className="container" style={{ borderTop: "0.2rem solid black"}}>
         <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
             <p className="col-md-4 mb-0 text-body-secondary">© 2023/2024 Conferences</p>
 
@@ -15,7 +15,7 @@ const Footer = () => {
             <li className="nav-item"><a href="#" className="nav-link px-2 text-body-secondary">About</a></li>
             </ul>
         </footer>
-    </div>
+    </footer>
     
   )
 }

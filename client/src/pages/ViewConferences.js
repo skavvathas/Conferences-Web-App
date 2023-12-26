@@ -35,13 +35,14 @@ const ViewConferences = () => {
     <div>
         <Header/>
         <div className="main" style={{ height: '100vh' }}>
-            <h1>Your Conferences:</h1>
+          <div class="container text-center">
+            <h1 className="fw-semibold" style={{marginTop:"50px"}}>Your Conferences:</h1>
             
               {isLoading ? (
                 <div>Loading...</div>
               ) : (
                 Array.isArray(conferences) && conferences.length > 0 ? (
-                  <div className="list-group" style={{ width: "70vh" }}>
+                  <div className="list-group container text-center" style={{ width: "70vh", marginTop:"50px" }}>
                     {conferences.map(conference => (
                       <button
                         key={conference.idconference}
@@ -55,6 +56,7 @@ const ViewConferences = () => {
                   <div>No conferences to display.</div>
                 )
               )}
+          </div>
         </div>
         <Footer/>
     </div>

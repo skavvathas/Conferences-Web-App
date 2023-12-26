@@ -1,9 +1,9 @@
 .card2 {
-	color:#fff;
+	color:#211e1e;
     width: 350px;
     border-radius: 7px;
-    background: linear-gradient(145deg, #1b151c, #141215);
-    border: 2px solid rgb(49, 239, 201);
+    background: linear-gradient(145deg, #eff3f2, #eeebf0);
+    border: 2px solid #f8d7da;
 }
 
 .num{

@@ -55,9 +55,11 @@ export default function Register() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    navigate("/home")
+
     // Here we use the useRegister hook from /hooks/useRegister.js file
     await register(regUser.firstName, regUser.lastName, regUser.email, regUser.username, regUser.password);
+
+    //navigate("/home")
   }
 
   return (
@@ -127,7 +129,7 @@ export default function Register() {
                   
 
                   <button name="Submit" onClick={isAllValid} className="btn btn-primary" disabled={isLoading}>Register</button>
-                  {/*error && <div className="">{error}</div>*/}
+                  {error && <div style={{color: "red"}}>{error}</div>}
                 </form>
                 <h3 className="mb-3" style={{marginTop: "20px", fontSize: "1.2em"}}>
                   Or if you have acount:

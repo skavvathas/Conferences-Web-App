@@ -85,7 +85,7 @@ const ReviewersExcel = () => {
                     {data.length > 0 && (
                         <table className="table">
                         <thead>
-                            <tr>
+                            <tr className="table-info">
                             {Object.keys(data[0]).map((key) => (
                                 <th key={key}>{key}</th>
                             ))}

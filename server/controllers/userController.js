@@ -52,9 +52,13 @@ async function checkUsername(username) {
     try{
         const [rows, fields] = await db.query('SELECT * FROM users WHERE username = ?', [username]);
 
+        console.log("rows.length-> ", rows.length);
+
         if (rows.length > 0) {
+            console.log("This userrname is in the database!")
             return 0; // this username is in the database
         } else {
+            console.log("This userrname is not in the database!")
             return 1; // this username is not in the database
         }
     } catch (error) {
@@ -128,22 +132,23 @@ const loginUser = async (req, res) => {
 const registerUser = async (req, res) => {
     const { firstName, lastName, email, username, password } = req.body;
 
-    const check = await checkUsername(username);
-
-    if(check == 0){
-        res.status(400).json({ error: "Username is already in use" });
-    }
-
-    var sql = "INSERT INTO users (firstName, lastName, email, username, password) VALUES (?,?,?,?,?)";
-
     try {
         // Generate a hash for the password
         console.log("HELLO!!!!!!!!")
-        
+
+        const check = await checkUsername(username);
+
+        if(check == 0){
+            res.status(400).json({ error: "Username is already in use" });
+            return;
+        }
+
+        var sql = "INSERT INTO users (firstName, lastName, email, username, password) VALUES (?,?,?,?,?)";
+
         const hash = await bcrypt.hash(password, saltRounds);
 
         console.log(hash);
-        
+
         const result = await db.query(sql, [firstName, lastName, email, username, hash] );
 
         const [user] = await db.query('SELECT * FROM users WHERE username = ?', [username]);

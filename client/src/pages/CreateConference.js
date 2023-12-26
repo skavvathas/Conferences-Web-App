@@ -44,7 +44,7 @@ const CreateConference = () => {
         // Here we use the useRegister hook from /hooks/useRegister.js file
         await insertConference(conf.userId, conf.author, conf.title, conf.acronym, conf.webpage, conf.city, conf.country, conf.firstday, conf.lastday, conf.primaryarea, conf.secondaryarea, conf.organizer, user.token);
         console.log("345321");
-        navigate(`/conferences/${conf.acronym}`)
+        navigate(`/viewconferences`);
     }
 
     useEffect(() => {
@@ -64,7 +64,7 @@ const CreateConference = () => {
             <div className="card shadow-2-strong" style={{ border: "0.2rem solid black"}}>
               <div className="card-body p-5 text-center">
                 <h1 className="mb-5">
-                  Create Conference {user.user[0].userId}
+                  Create Conference
                 </h1>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">

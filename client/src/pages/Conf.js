@@ -50,21 +50,25 @@ const Conf = () => {
         navigate(`/addreviewershand/${conferenceId}`);
     }
 
+    const handleAddPaperNew = () =>{
+        navigate(`/addpapernew/${conferenceId}`);
+    }
+
     return (
         <div>
             <Header/>
-                <div className="main" style={{height: "100vh"}}>
-                    <h1>Conference:  {acronym}</h1>
-
+                
+                <div className="main" className="centered" style={{marginBottom:"100px"}}>
+                    <h1 className="fw-semibold" style={{marginTop:"100px"}}>Conference:  {acronym}</h1>
                     <div class="container text-center">
                         <div class="row">
                             <div class="col">
-                                Papers
+                                <h4 class="text-center">Papers</h4>
                                 {isLoading ? (
                                     <div>Loading...</div>
                                 ) : (
                                     Array.isArray(papers) && papers.length > 0 ? (
-                                    <div className="list-group" style={{ width: "70vh" }}>
+                                    <div className="list-group container text-center" style={{ width: "70vh" }}>
                                         {papers.map(paper => (
                                         <button
                                             key={paper.paperId}
@@ -80,12 +84,12 @@ const Conf = () => {
                                 )}
                             </div>
                             <div class="col">
-                                Reviewers
+                                <h4>Reviewers</h4>
                                 {isLoading ? (
                                     <div>Loading...</div>
                                 ) : (
                                     Array.isArray(reviewers) && reviewers.length > 0 ? (
-                                    <div className="list-group" style={{ width: "70vh" }}>
+                                    <div className="list-group container text-center" style={{ width: "70vh" }}>
                                         {reviewers.map(reviewer => (
                                         <button
                                             key={reviewer.reviewerId}
@@ -102,11 +106,19 @@ const Conf = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="button-container">
-                        <button className="btn btn-success button1 btn-lg" onClick={handleAddPaper}>Add paper</button>
-                        <button className="btn btn-success button1 btn-lg" onClick={handleAddPaperExcel}>Add papers via excel</button>
-                        <button className="btn btn-success button1 btn-lg" onClick={handleAddReviewersExcel}>Add reviewers via excel</button>
-                        <button className="btn btn-dark button1 btn-lg" onClick={handleAddReviewersHand}>Add reviewers by hand</button>
+                    <div style={{backgroundColor: "#e6ecf0"}}>
+                        <div className="button-container" style={{marginBottom: "50px"}}>
+                            <button className="btn btn-success button1 btn-lg" onClick={handleAddPaper}>Add paper (title-abstract)</button>
+                            <button className="btn btn-success button1 btn-lg" onClick={handleAddPaperNew}>Add paper</button>
+                            <button className="btn btn-success button1 btn-lg" onClick={handleAddPaperExcel}>Add papers via excel (title-abstract)</button>
+                        </div>
+                        <div className="button-container" style={{marginBottom: "50px"}}>
+                            <button className="btn btn-dark button1 btn-lg" onClick={handleAddReviewersExcel}>Add reviewers via excel</button>
+                            <button className="btn btn-dark button1 btn-lg" onClick={handleAddReviewersHand}>Add reviewers by hand</button>
+                        </div>
+                        <div className="button-container" style={{marginBottom: "50px"}}>
+                            <button className="btn btn-warning button1 btn-lg">See the recommendations</button>
+                        </div>
                     </div>
                 </div>
             <Footer/>

@@ -312,3 +312,7 @@ height: auto;
     padding-left: 3px;
     font-weight: bold;
 }
+
+.footer {
+    margin-top: auto; /* This pushes the footer to the bottom */
+}
