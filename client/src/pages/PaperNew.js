@@ -150,7 +150,7 @@ const PaperNew = () => {
         setTitle(titleText);
     };*/
 
-    const extractTitle = () => {
+    /*const extractTitle = () => {
         const endIndicator = "Abstract"; // End indicator for the title
     
         const endIndex = text.indexOf(endIndicator);
@@ -164,6 +164,42 @@ const PaperNew = () => {
             // or handle this case based on your requirements
             titleText = text.trim();
         }
+
+         // Removing specific characters from titleText
+         titleText = titleText.replace(/—|-|\.\.|\. \.|\. /g, "");
+    
+        setTitle(titleText);
+    };*/
+
+    const extractTitle = () => {
+        const endIndicator = "Abstract"; // End indicator for the title
+        const asteriskIndicator = "∗"; // Indicator for additional text to be removed
+        const asteriskIndicator2 = "*";
+    
+        let endIndex = text.indexOf(endIndicator);
+        let asteriskIndex = text.indexOf(asteriskIndicator);
+        let asteriskIndex2 = text.indexOf(asteriskIndicator2);
+        let titleText = '';
+    
+        // Check for the presence of "∗" and adjust the endIndex accordingly
+        if (asteriskIndex !== -1) {
+            endIndex = asteriskIndex;
+        }
+
+        if (asteriskIndex2 !== -1) {
+            endIndex = asteriskIndex2;
+        }
+    
+        if (endIndex !== -1) {
+            // Extract the title from the start of the text up to the endIndex
+            titleText = text.substring(0, endIndex).trim();
+        } else {
+            // If neither "Abstract" nor "∗" is found, consider the entire text as the title
+            titleText = text.trim();
+        }
+    
+        // Removing specific characters from titleText
+        titleText = titleText.replace(/—|-|\.\.|\. \.|\. /g, "");
     
         setTitle(titleText);
     };
@@ -174,11 +210,22 @@ const PaperNew = () => {
             <Header/>
             <div className="main" style={{ height: '100vh' }}>
                 {/* Other components */}
-                <input type="file" onChange={handleFileChange} />
-                <div>The title: {title}</div>
-                <div>The abstract: {abstract}</div>
-                <button className="btn btn-success button1 btn-lg" onClick={handleChange}>Add</button>
-                {/* Pagination controls, etc. */}
+                
+                    <div style={{marginTop: "30px", marginBottom: "30px"}}>
+                        <input type="file" onChange={handleFileChange} />
+                    </div>
+                    <div>
+                        <h3>The title:</h3>
+                        <p> {title} </p>
+                    </div>
+                    <div>
+                        <h3>The abstract:</h3>
+                        <p> {abstract} </p>
+                    </div>
+                    <button className="btn btn-success button1 btn-lg" onClick={handleChange}>Add</button>
+                    {/* Pagination controls, etc. */}
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                
             </div>
             <Footer/>
         </div>

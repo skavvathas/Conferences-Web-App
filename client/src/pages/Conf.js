@@ -57,7 +57,6 @@ const Conf = () => {
     return (
         <div>
             <Header/>
-                
                 <div className="main" className="centered" style={{marginBottom:"100px"}}>
                     <h1 className="fw-semibold" style={{marginTop:"100px"}}>Conference:  {acronym}</h1>
                     <div class="container text-center">
@@ -106,18 +105,14 @@ const Conf = () => {
                             </div>
                         </div>
                     </div>
-                    <div style={{backgroundColor: "#e6ecf0"}}>
+                    <div >
                         <div className="button-container" style={{marginBottom: "50px"}}>
                             <button className="btn btn-success button1 btn-lg" onClick={handleAddPaper}>Add paper (title-abstract)</button>
                             <button className="btn btn-success button1 btn-lg" onClick={handleAddPaperNew}>Add paper</button>
                             <button className="btn btn-success button1 btn-lg" onClick={handleAddPaperExcel}>Add papers via excel (title-abstract)</button>
-                        </div>
-                        <div className="button-container" style={{marginBottom: "50px"}}>
                             <button className="btn btn-dark button1 btn-lg" onClick={handleAddReviewersExcel}>Add reviewers via excel</button>
                             <button className="btn btn-dark button1 btn-lg" onClick={handleAddReviewersHand}>Add reviewers by hand</button>
-                        </div>
-                        <div className="button-container" style={{marginBottom: "50px"}}>
-                            <button className="btn btn-warning button1 btn-lg">See the recommendations</button>
+                            <button className="btn btn-warning button1 btn-lg" onClick={()=>{navigate(`/recommendation`)}}>See the recommendations</button>
                         </div>
                     </div>
                 </div>

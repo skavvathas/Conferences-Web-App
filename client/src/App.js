@@ -15,6 +15,7 @@ import Profile from "./pages/Profile";
 import UploadReviewers from "./pages/UploadReviewers";
 import ReviewersExcel from "./pages/ReviewersExcel";
 import ReviewersHand from "./pages/ReviewersHand";
+import Recommendation from "./pages/Recommendation";
 import { useAuthContext } from "./hooks/useAuthContext";
 import Conf from "./pages/Conf";
 
@@ -42,6 +43,7 @@ function App() {
         <Route path="/addpaper/:id" element={user ? <Paper /> : <Navigate to="/" />} />
         <Route path="/addpaperexcel/:id" element={user ? <PaperExcel /> : <Navigate to="/" />} />
         <Route path="/addpapernew/:id" element={user ? <PaperNew /> : <Navigate to="/" />} />
+        <Route path="/recommendation" element={user ? <Recommendation /> : <Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );

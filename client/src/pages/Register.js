@@ -95,22 +95,22 @@ export default function Register() {
                     />
                   </div>
                   <div className="mb-3">
-                    <input 
-                      onChange={handleChangeRegister} 
-                      name="email" 
-                      placeholder="Email" 
-                      value={regUser.email} 
-                      required 
+                    <input
+                      onChange={handleChangeRegister}
+                      name="email"
+                      placeholder="Email"
+                      value={regUser.email}
+                      required
                       type="email"
                       className="form-control"
                     />
                   </div>
                   <div className="mb-3">
-                    <input 
-                      onChange={handleChangeRegister} 
-                      name="username" 
-                      placeholder="Username" 
-                      value={regUser.username} 
+                    <input
+                      onChange={handleChangeRegister}
+                      name="username"
+                      placeholder="Username"
+                      value={regUser.username}
                       required
                       className="form-control"
                     />
@@ -126,7 +126,6 @@ export default function Register() {
                       className="form-control"
                     />
                   </div>
-                  
 
                   <button name="Submit" onClick={isAllValid} className="btn btn-primary" disabled={isLoading}>Register</button>
                   {error && <div style={{color: "red"}}>{error}</div>}
