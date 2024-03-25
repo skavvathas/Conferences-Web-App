@@ -1,54 +1,26 @@
 import {useState} from "react";
 import {useAuthContext} from "./useAuthContext";
 
-export const useReviewer = () =>{
+export const usePost = () =>{
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(null);
     const { dispatch } = useAuthContext();
 
-    const insertReviewer = async (conferenceId, email, name, token) => {
+    const insertPost = async (post, reviewerId, paperId, token, username) => {
         setIsLoading(true)
         setError(null)
 
-        //console.log("UseConference: ", author);
-        console.log("REVIEWER use: ", email, " ", name);
-
-        const response = await fetch('/api/reviewer/insertReviewer', {
+        const response = await fetch('/api/post/insertPost', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({conferenceId, email, name}) // in server side we use body.firstname, etc
+            body: JSON.stringify({ post, reviewerId, paperId, username }) // in server side we use body.firstname, etc
         })
         const json = await response.json()
 
         console.log(json);
-
-        if (!response.ok) {
-            setIsLoading(false)
-            setError(json.error)
-        }
-        if (response.ok) {
-
-            // update loading state
-            setIsLoading(false)
-        }
-    }
-
-    const getReviewer = async (conferenceId, token) => {
-        setIsLoading(true)
-        setError(null)
-
-        console.log("***UseConference****: ", conferenceId);
-
-        const response = await fetch(`/api/reviewer/${conferenceId}`, {
-            method: 'GET',
-            headers: {'Authorization': `Bearer ${token}`}
-        })
-        const json = await response.json()
-
-        console.log("reviewers: ", json);
 
         if (!response.ok) {
             setIsLoading(false)
@@ -63,5 +35,33 @@ export const useReviewer = () =>{
         }
     }
 
-    return { insertReviewer, getReviewer, isLoading, error }
+    const getUserByPaper = async (paperId, token) => {
+        setIsLoading(true);
+        setError(null);
+
+        const response = await fetch('/api/post/getPosts', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ paperId })
+        })
+
+        const json = await response.json();
+
+        console.log("53->", json);
+
+        if (!response.ok) {
+            setIsLoading(false)
+            setError(json.error)
+        }
+        if (response.ok) {
+            setIsLoading(false)
+
+            return json;
+        }
+    }
+
+    return { insertPost, getUserByPaper, isLoading, error }
 }

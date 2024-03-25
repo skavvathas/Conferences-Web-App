@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import { useReviewer } from "../hooks/useReviewer";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
+import { Card, CardHeader, Flex, Avatar, Box, Heading, Text, IconButton, Button, CardBody, CardFooter } from '@chakra-ui/react';
 
 const ReviewersHand = () => {
     const { id } = useParams(); // conferenceId CHECK THE NAMES TO BE SAME 
@@ -36,7 +37,7 @@ const ReviewersHand = () => {
         //navigate("/home")
         console.log("###########");
         // Here we use the useRegister hook from /hooks/useRegister.js file
-        await insertReviewer(reviewer.userId, reviewer.conferenceId, reviewer.email, reviewer.name, user.token);
+        await insertReviewer(reviewer.conferenceId, reviewer.email, reviewer.name, user.token);
         console.log("345321");
         navigate(`/conferences`);
     }
@@ -53,7 +54,8 @@ const ReviewersHand = () => {
         <div>
             <Header/>
                 <div className="main" style={{height: "100vh"}}>
-                    <h1>Add reviewers via excel</h1>
+
+                    <Heading style={{marginTop: "30px", marginBottom: "20px"}}>Add reviewers in conference {id} by hand</Heading>
 
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">

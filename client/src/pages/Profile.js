@@ -3,6 +3,8 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import "./Profile.css";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { Box, Button, ButtonGroup, Card, CardHeader, Center, CardBody, CardFooter, Divider, Heading, Image, Stack, Text, Flex } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 
 const Profile = () => {
   const {user} = useAuthContext(); 
@@ -15,23 +17,37 @@ const Profile = () => {
   return (
     <div>
       <Header/>
-      <div className="container d-flex justify-content-center" style={{marginTop: "30px", marginBottom: "250px", height: '50vh' }}>
-        <div className="card2 p-3 py-4">
-          <div className="text-center">
-            <img src="https://static.thenounproject.com/png/5034901-200.png" width="100" className="rounded-circle"/>
-            <h3 className="mt-2">{user.user[0].firstName} {user.user[0].lastName}</h3>
-            <span className="mt-1 clearfix">{user.user[0].username}</span>
-            <span className="mt-1 clearfix">{user.user[0].email}</span>
-            <div className="row mt-3 mb-3">
-              <div>
-                <h5>Conferences</h5>
-                <span className="num">10</span>
-              </div>
-            </div>
+        <div className="container d-flex justify-content-center" style={{marginTop: "30px", marginBottom: "250px", height: '100vh' }}>
+          <Card
+            maxW={{ base: "100%", sm: "300px" }}
+            borderWidth="1px"
+            borderRadius="sm"
+            overflow="hidden"
+            boxShadow="xl"
+            height="500px"
+            m={4}
+            _hover={{ transform: "scale(1.05)" }} // Apply hover effect
+          >
+            <CardHeader bg="cyan.200" display="flex" justifyContent="center">
+              <Image src="https://static.thenounproject.com/png/5034901-200.png" alt="image" borderRadius='lg'/>
+            </CardHeader>
             
-          </div>
+            <CardBody
+                bg="orange.100" // Set background color of CardBody
+                transition="background-color 0.3s" // Add transition for smooth color change
+                _hover={{ bg: "orange.200" }} // Change background color on hover
+            >
+                <Heading size='lg' _hover={{ color: "blue.600" }}>{user.user[0].firstName} {user.user[0].lastName}</Heading>
+                <Text>Username: {user.user[0].username} </Text>
+                <Text>Email: {user.user[0].email}</Text>
+              <ButtonGroup spacing='2' colorScheme='messenger'>
+                {/*<Button as={RouterLink} to={link} variant='solid' colorScheme='blue'>
+                  {bt}
+      </Button>*/}
+              </ButtonGroup>
+            </CardBody>
+          </Card>
         </div>
-      </div>
       <Footer/>
     </div>
   )

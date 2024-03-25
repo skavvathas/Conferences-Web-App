@@ -7,6 +7,7 @@ import { usePaper } from "../hooks/usePaper";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
 import { useParams } from 'react-router-dom';
+import { Card, CardHeader, Flex, Avatar, Box, Heading, Text, IconButton, Button, CardBody, CardFooter } from '@chakra-ui/react';
 
 const Paper = () => {
   const { id } = useParams(); // conferenceId CHECK THE NAMES TO BE SAME 
@@ -33,14 +34,30 @@ const Paper = () => {
     });
   }
 
-  async function handleSubmit(e) {
+  /*async function handleSubmit(e) {
     e.preventDefault()
     //navigate("/home")
     console.log("########### user-token: ", user.token);
     // Here we use the useRegister hook from /hooks/useRegister.js file
-    await insertPaper(paper.userId, paper.conferenceId, paper.title, paper.abstract, user.token);
+    await insertPaper(paper.title, paper.abstract, user.token);
     console.log("345321");
     navigate(`/conferences`);
+  }*/
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    console.log("########### user-token: ", user.token);
+    // Here we use the useRegister hook from /hooks/useRegister.js file
+    try {
+        await insertPaper(id, paper.title, paper.abstract, user.token);
+        console.log("345321");
+        navigate(`/conferences`);
+    } catch (error) {
+        console.error("Error inserting paper:", error);
+        // Display error message to the user
+        // For example:
+        // setError("Error inserting paper: " + error.message);
+    }
   }
 
   useEffect(() => {
@@ -55,6 +72,8 @@ const Paper = () => {
     <div>
         <Header/>
         <div className="main" style={{ height: '100vh' }}>
+          <Heading style={{marginTop: "30px"}}>Add a single paper</Heading>
+          
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label for="conferenceTitle" className="form-label">Paper title</label>

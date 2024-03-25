@@ -11,6 +11,9 @@ import * as XLSX from "xlsx";
 import Tesseract from 'tesseract.js';
 import * as pdfjsLib from 'pdfjs-dist';
 import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.entry';
+import { Card, CardHeader, Flex, Avatar, Box, Heading, Text, IconButton, Button, CardBody, CardFooter } from '@chakra-ui/react';
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useDisclosure } from '@chakra-ui/react';
+import { usePaper } from "../hooks/usePaper";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
@@ -88,9 +91,13 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs
 
 const PaperNew = () => {
     const [file, setFile] = useState(null);
+    const { user } = useAuthContext();
+    const { id } = useParams();
     const [text, setText] = useState('');
     const [abstract, setAbstract] = useState('');
     const [title, setTitle] = useState('');
+    const {insertPaper, isLoading, error} = usePaper();
+    const navigate = useNavigate();
 
     const extractTextFromPDF = async (pdfFile) => {
         const loadingTask = pdfjsLib.getDocument(URL.createObjectURL(pdfFile));
@@ -204,28 +211,59 @@ const PaperNew = () => {
         setTitle(titleText);
     };
     
+    /*async function handleSubmit(e) {
+        e.preventDefault()
+        //navigate("/home")
+        console.log("########### user-token: ", user.token);
+        // Here we use the useRegister hook from /hooks/useRegister.js file
+        await insertPaper(user.user[0].userId, id, title, abstract, user.token);
+        console.log("345321");
+        navigate(`/conferences`);
+    }*/
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        console.log("########### user-token: ", user.token);
+        // Here we use the useRegister hook from /hooks/useRegister.js file
+        try {
+            await insertPaper(id, title, abstract, user.token);
+            console.log("345321");
+            navigate(`/conferences`);
+        } catch (error) {
+            console.error("Error inserting paper:", error);
+            // Display error message to the user
+            // For example:
+            // setError("Error inserting paper: " + error.message);
+        }
+      }
 
     return (
         <div>
             <Header/>
-            <div className="main" style={{ height: '100vh' }}>
+            <div className="main" style={{ minHeight: '100vh' }}>
                 {/* Other components */}
-                
-                    <div style={{marginTop: "30px", marginBottom: "30px"}}>
-                        <input type="file" onChange={handleFileChange} />
-                    </div>
-                    <div>
-                        <h3>The title:</h3>
-                        <p> {title} </p>
-                    </div>
-                    <div>
-                        <h3>The abstract:</h3>
-                        <p> {abstract} </p>
-                    </div>
-                    <button className="btn btn-success button1 btn-lg" onClick={handleChange}>Add</button>
+                <Heading style={{marginTop: "30px"}}>Add paper in conference {id}.</Heading>
+                <h3>Upload the paper and we will get only the title and the abstract.</h3>
+                <h3> Press the Add button to see the title and the abstract. </h3>
+                <h3> Press the Submit button to upload the paper. </h3>
+
+                <div style={{marginTop: "30px", marginBottom: "30px"}}>
+                    <input type="file" onChange={handleFileChange} />
+                </div>
+                <div>
+                    <h3>The title:</h3>
+                    <p> {title} </p>
+                </div>
+                <div>
+                    <h3>The abstract:</h3>
+                    <p> {abstract} </p>
+                </div>
+                {/*<button className="btn btn-success button1 btn-lg" onClick={handleChange}>Add</button>*/}
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '100px'}}>
+                    <Button colorScheme='messenger' variant='outline' onClick={handleChange} style={{ marginRight: '10px' }}>Add</Button>
                     {/* Pagination controls, etc. */}
-                    <button type="submit" className="btn btn-primary">Submit</button>
-                
+                    <Button type="submit" colorScheme='messenger' onClick={handleSubmit} style={{ marginLeft: '10px' }}>Submit</Button>
+                </div>
             </div>
             <Footer/>
         </div>

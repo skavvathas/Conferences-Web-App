@@ -49,27 +49,27 @@ export default function Login() {
                 </h1>
                 <form action="" method="post" onSubmit={handleSubmit}>
                   <div className="mb-3">
-                    <input 
-                      onChange={handleChangeLogin} 
-                      name="username" 
-                      placeholder="Username" 
-                      value={logUser.username} 
+                    <input
+                      onChange={handleChangeLogin}
+                      name="username"
+                      placeholder="Username"
+                      value={logUser.username}
                       required
                       className="form-control"
                     />
                   </div>
                   <div className="mb-3">
-                    <input 
-                      onChange={handleChangeLogin} 
-                      name="password" 
-                      placeholder="Password" 
-                      value={logUser.password} 
-                      required 
-                      type="password" 
-                      pattern="[a-z0-9]{1,15}" 
+                    <input
+                      onChange={handleChangeLogin}
+                      name="password"
+                      placeholder="Password"
+                      value={logUser.password}
+                      required
+                      type="password"
+                      pattern="[a-z0-9]{1,15}"
                       title="Password should be digits (0 to 9) or alphabets (a to z)."
                       className="form-control"
-                    />  
+                    />
                   </div>
                   <button href="/home" className="btn btn-outline-info" type="submit">Login</button>
                   {/*error && <div>{error}</div>*/}

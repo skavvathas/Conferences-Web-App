@@ -102,4 +102,24 @@ const getConferencesByAuthor = async (req, res) => {
     }
 };
 
-module.exports = {insertConf, getConf, getConferencesByAuthor}
+const getConferenceById = async (req, res) => {
+    const { id } = req.params;
+
+    console.log("id: ", id);
+
+    var sql = "SELECT * FROM conferences WHERE conferenceId = ?";
+
+    try {
+        //const conferences = await db.query(sql, [id]);
+        const [conference] = await db.query(sql, [id]);
+        console.log("@. Conference: ", conference);
+
+        res.status(200).json(conference);
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ error: error.message });
+    }
+};
+
+
+module.exports = { insertConf, getConf, getConferencesByAuthor, getConferenceById }

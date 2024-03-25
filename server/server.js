@@ -9,6 +9,7 @@ const userRoutes = require("./routes/user");
 const userConferences = require("./routes/conference");
 const userReviewer = require("./routes/reviewer");
 const userPaper = require("./routes/paper")
+const userPost = require("./routes/post")
 //const friendsRoutes = require("./routes/friends");
 //const uploadRoutes = require("./routes/upload");
 //const User = require("./models/userModel");
@@ -36,11 +37,10 @@ app.use("/api/user", userRoutes);
 app.use("/api/conference", userConferences);
 app.use("/api/reviewer", userReviewer);
 app.use("/api/paper", userPaper);
+app.use("/api/post", userPost)
 //app.use("/api/friends", friendsRoutes);
 //app.use("/api/uploaded", uploadRoutes);
 //app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
-
 
 app.listen(5000, function() {
     console.log("Server started on port 4000!");

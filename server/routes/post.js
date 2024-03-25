@@ -1,7 +1,7 @@
 const express = require("express");
 
 // controller functions
-const {insertConf, getConf, getConferencesByAuthor, getConferenceById} = require("../controllers/conferenceController");
+const {insertPost, getPostsbyPaperId} = require("../controllers/postController");
 
 const router = express.Router();
 //In summary, const app = express() is the main application instance, while
@@ -10,15 +10,10 @@ const router = express.Router();
 const requireAuth = require('../middleware/requireAuth');
 router.use(requireAuth);
 
-// insert conference in the database
-router.post("/insertConf", insertConf)
+// insert post in the database
+router.post("/insertPost", insertPost)
 
-// get Conference info
-router.post("/getConf", getConf)
-
-router.get("/:id", getConferencesByAuthor);
-
-router.get("/id/:id", getConferenceById);
-
+// get Post info
+router.post("/getPosts", getPostsbyPaperId)
 
 module.exports = router
