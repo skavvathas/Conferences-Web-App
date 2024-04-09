@@ -18,6 +18,7 @@ export const usePost = () =>{
             },
             body: JSON.stringify({ post, reviewerId, paperId, username }) // in server side we use body.firstname, etc
         })
+        
         const json = await response.json()
 
         console.log(json);
@@ -27,7 +28,6 @@ export const usePost = () =>{
             setError(json.error)
         }
         if (response.ok) {
-
             // update loading state
             setIsLoading(false)
 

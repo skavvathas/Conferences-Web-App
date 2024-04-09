@@ -44,7 +44,7 @@ const Conferences = () => {
           <Center>
             <Heading mb={4} style={{ marginTop: "50px" }} _hover={{ color: "blue.600" }}>Create, View and Join a Conference</Heading>
           </Center>
-          <Flex direction={{ base: "column", sm: "row" }} align="center" justify="center" wrap="wrap" style={{ height: '80vh' }}>
+          <Flex direction={{ base: "column", sm: "row" }} align="center" justify="center" wrap="wrap" style={{ paddingBottom: '100px' }}>
           <ConferenceCard
               imageUrl="/images/ethereum.png"
               title="Create a new Conference"
@@ -71,7 +71,7 @@ const Conferences = () => {
               bt="Join"
             />
           </Flex>
-      <Footer/>
+        <Footer style={{position: 'absolute', bottom: '0', width: '100%' }} />
     </Box>
   );
 };

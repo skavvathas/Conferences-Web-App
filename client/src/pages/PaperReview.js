@@ -92,11 +92,17 @@ const Paper = () => {
         <div className="main" style={{ minHeight: '100vh', marginBottom: "60px"}}>
           {paper && posts && paper[0] ? (
           <div>
-            <div style={{marginTop: "40px"}}>
-              <Heading>Title of paper: {paper[0].title}</Heading>
+            <div style={{ marginTop: "40px" }}>
+              <Heading fontWeight="normal">
+                <span style={{ color: "blue" }}>Title of paper:</span>{" "}
+                <span style={{ color: "black", fontWeight: "thin" }}>{paper[0].title}</span>
+              </Heading>
             </div>
-            <div style={{marginTop: "40px"}}>
-              <Heading>The abstract of paper: {paper[0].abstract}</Heading>
+            <div style={{ marginTop: "40px" }}>
+              <Heading fontWeight="normal">
+                <span style={{ color: "blue" }}>The abstract of paper:</span>{" "}
+                <span style={{ color: "black", fontWeight: "thin" }}>{paper[0].abstract}</span>
+              </Heading>
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', marginBottom: '30px' }}>

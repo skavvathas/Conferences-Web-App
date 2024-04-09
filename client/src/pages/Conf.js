@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useReviewer } from "../hooks/useReviewer";
 import { usePaper } from "../hooks/usePaper";
-import { Button, Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Card, CardHeader, Container, Heading} from "@chakra-ui/react";
+import { Button, Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Center, Box, Card, CardHeader, Container, Heading, Flex} from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 
 const Conf = () => {
@@ -62,52 +62,54 @@ const Conf = () => {
     };
 
     return (
-        <div>
-            <Header/>
-                <div className="main" className="centered" style={{marginBottom:"100px", height: "100vh"}}>
-                    <div className="container text-center">
-                        <h1 className="fw-semibold" style={{marginTop:"50px"}}>Conference acronym:  {acronym}</h1>
-                        <h1 className="fw-semibold" style={{marginBottom:"50px"}}>Conference id:  {conferenceId}</h1>
-                        <div className="row">
-                            <div className="col">
-                                <Card borderWidth="1px" borderColor="black" borderRadius="0px" width="80%">
-                                    <CardHeader bg="cyan.200"><Heading>Papers</Heading></CardHeader>
-                                    {isLoading ? (
-                                        <div>Loading...</div>
-                                    ) : (
-                                        Array.isArray(papers) && papers.length > 0 ? (
-                                        <Accordion allowToggle>
+        <Box>
+            <Header />
+            <Center>
+                <Heading mb={4} style={{ marginTop: "50px" }} _hover={{ color: "blue.600" }}>Conference acronym: {acronym}</Heading>
+            </Center>
+            <Center>
+                <Heading mb={4} _hover={{ color: "blue.600" }}>Conference id: {conferenceId}</Heading>
+            </Center>
+            <Flex direction="column" align="center" justify="center" wrap="wrap" style={{ paddingBottom: '100px' }}>
+                <Flex direction={{ base: "column", md: "row" }} justify="center" align="center">
+                    <div className="col">
+                        <Card borderWidth="1px" borderColor="black" borderRadius="0px" margin={2}>
+                            <CardHeader bg="cyan.200"><Heading>Papers</Heading></CardHeader>
+                            {isLoading ? (
+                                <div>Loading...</div>
+                            ) : (
+                                Array.isArray(papers) && papers.length > 0 ? (
+                                    <Accordion allowToggle>
                                         {papers.map(paper => (
                                             <AccordionItem key={paper.paperId}>
                                                 <h2>
                                                     <AccordionButton>
                                                         <Box as={RouterLink} to={`/paper/${paper.paperId}`} flex='1' textAlign='left'>
-                                                        {paper.title.length > 40 ? paper.title.substring(0, 40) + '...' : paper.title} {/* Displaying first 40 letters of title */}
+                                                            {paper.title.length > 40 ? paper.title.substring(0, 40) + '...' : paper.title} {/* Displaying first 40 letters of title */}
                                                         </Box>
                                                         <AccordionIcon />
                                                     </AccordionButton>
                                                 </h2>
                                                 <AccordionPanel pb={4}>
-                                                Abstract: {paper.abstract.length > 40 ? paper.abstract.substring(0, 40) + '...' : paper.abstract} {/* Displaying first 40 letters of abstract */}
+                                                    Abstract: {paper.abstract.length > 40 ? paper.abstract.substring(0, 40) + '...' : paper.abstract} {/* Displaying first 40 letters of abstract */}
                                                 </AccordionPanel>
                                             </AccordionItem>
                                         ))}
-                                        </Accordion>
-                                        ) : (
-                                            <div>No papers to display.</div>
-                                        )
-                                    )}
-                                </Card>
-                            </div>
-                            <div class="col">
-                                <Card borderWidth="1px" borderColor="black" borderRadius="0px" width="80%">
-                                    <CardHeader bg="cyan.200"><Heading>Reviewers</Heading></CardHeader>
-                                    {isLoading ? (
-                                        <div>Loading...</div>
-                                    ) : (
-                                        Array.isArray(reviewers) && reviewers.length > 0 ? (
-                                        
-                                        <Accordion allowToggle>
+                                    </Accordion>
+                                ) : (
+                                    <div>No papers to display.</div>
+                                )
+                            )}
+                        </Card>
+                    </div>
+                    <div className="col">
+                        <Card borderWidth="1px" borderColor="black" borderRadius="0px" margin={2}>
+                            <CardHeader bg="cyan.200"><Heading>Reviewers</Heading></CardHeader>
+                            {isLoading ? (
+                                <div>Loading...</div>
+                            ) : (
+                                Array.isArray(reviewers) && reviewers.length > 0 ? (
+                                    <Accordion allowToggle>
                                         {reviewers.map(reviewer => (
                                             <AccordionItem key={reviewer.reviewerId}>
                                                 <h2>
@@ -123,31 +125,29 @@ const Conf = () => {
                                                 </AccordionPanel>
                                             </AccordionItem>
                                         ))}
-                                        </Accordion>
-                                        ) : (
-                                            <div>No papers to display.</div>
-                                        )
-                                    )}
-                                </Card>
-                                
-                            </div>
-                        </div>
+                                    </Accordion>
+                                ) : (
+                                    <div>No reviewers to display.</div>
+                                )
+                            )}
+                        </Card>
                     </div>
-                    <div >
-                        <div className="button-container" style={{marginBottom: "50px"}}>
-                            <Button as={RouterLink} to={`/addpaper/${conferenceId}`} colorScheme='messenger'>Add paper (title-abstract)</Button>
-                            <Button as={RouterLink} to={`/addpapernew/${conferenceId}`} colorScheme='messenger' >Add paper</Button>
-                            <Button as={RouterLink} to={`/addpaperexcel/${conferenceId}`} colorScheme='messenger'>Add papers via excel (title-abstract)</Button>
-                            <Button as={RouterLink} to={`/addpapercsv/${conferenceId}`} colorScheme='messenger'>Add papers via csv (title-abstract)</Button>
-                            <Button as={RouterLink} to={`/addreviewersexcel/${conferenceId}`} colorScheme='messenger' variant='outline'>Add reviewers via excel</Button>
-                            <Button as={RouterLink} to={`/addreviewershand/${conferenceId}`} colorScheme='messenger' variant='outline'>Add reviewers by hand</Button>
-                            <Button as={RouterLink} to={`/addreviewerscsv/${conferenceId}`} colorScheme='messenger' variant='outline'>Add reviewers via csv file</Button>
-                            <Button as={RouterLink} to={`/recommendation`} colorScheme='cyan'>See the recommendations</Button>
-                        </div>
+                </Flex>
+                <Flex direction="column" align="center" justify="center" wrap="wrap">
+                    <div className="button-container" style={{ marginBottom: "50px" }}>
+                        <Button as={RouterLink} to={`/addpaper/${conferenceId}`} colorScheme='messenger'>Add paper (title-abstract)</Button>
+                        <Button as={RouterLink} to={`/addpapernew/${conferenceId}`} colorScheme='messenger'>Add paper</Button>
+                        <Button as={RouterLink} to={`/addpaperexcel/${conferenceId}`} colorScheme='messenger'>Add papers via excel (title-abstract)</Button>
+                        <Button as={RouterLink} to={`/addpapercsv/${conferenceId}`} colorScheme='messenger'>Add papers via csv (title-abstract)</Button>
+                        <Button as={RouterLink} to={`/addreviewersexcel/${conferenceId}`} colorScheme='messenger' variant='outline'>Add reviewers via excel</Button>
+                        <Button as={RouterLink} to={`/addreviewershand/${conferenceId}`} colorScheme='messenger' variant='outline'>Add reviewers by hand</Button>
+                        <Button as={RouterLink} to={`/addreviewerscsv/${conferenceId}`} colorScheme='messenger' variant='outline'>Add reviewers via csv file</Button>
+                        <Button as={RouterLink} to={`/recommendation/${conferenceId}`} colorScheme='cyan'>See the recommendations</Button>
                     </div>
-                </div>
-            <Footer/>
-        </div>
+                </Flex>
+            </Flex>
+            <Footer />
+        </Box>
     )
 }
 

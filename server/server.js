@@ -10,9 +10,11 @@ const userConferences = require("./routes/conference");
 const userReviewer = require("./routes/reviewer");
 const userPaper = require("./routes/paper")
 const userPost = require("./routes/post")
+const userRecommendation = require("./routes/recommendation")
 //const friendsRoutes = require("./routes/friends");
 //const uploadRoutes = require("./routes/upload");
 //const User = require("./models/userModel");
+
 // express app
 const app = express();
 const path = require('path');
@@ -37,7 +39,8 @@ app.use("/api/user", userRoutes);
 app.use("/api/conference", userConferences);
 app.use("/api/reviewer", userReviewer);
 app.use("/api/paper", userPaper);
-app.use("/api/post", userPost)
+app.use("/api/post", userPost);
+app.use("/api/recommendation", userRecommendation);
 //app.use("/api/friends", friendsRoutes);
 //app.use("/api/uploaded", uploadRoutes);
 //app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

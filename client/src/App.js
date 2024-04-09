@@ -51,7 +51,7 @@ function App() {
         <Route path="/addpapercsv/:id" element={user ? <PaperCsv /> : <Navigate to="/" />} />
         <Route path="/addreviewerscsv/:id" element={user ? <ReviewersCsv /> : <Navigate to="/" />} />
         <Route path="/addpapernew/:id" element={user ? <PaperNew /> : <Navigate to="/" />} />
-        <Route path="/recommendation" element={user ? <Recommendation /> : <Navigate to="/" />} />
+        <Route path="/recommendation/:id" element={user ? <Recommendation /> : <Navigate to="/" />} />
         <Route path="/joinconference" element={user ? <JoinConference /> : <Navigate to="/" />} />
         <Route path="/conferencerecommendation/:id" element={user ? <ConferenceWithRecom /> : <Navigate to="/" />} />
       </Routes>
