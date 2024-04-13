@@ -133,7 +133,7 @@ const Recommendation = () => {
           <>
             <div style={{ marginLeft: '20px', marginRight: '20px' }}>
               <Heading style={{marginBottom: '40px'}}>The assignments for every reviewer: </Heading>
-              <Table variant="simple">
+              <Table variant="simple"  colorScheme='teal'>
                 <Thead>
                   <Tr>
                     <Th>Name</Th>
@@ -155,6 +155,7 @@ const Recommendation = () => {
                   ))}
                 </Tbody>
               </Table>
+              <h5 style={{ marginTop: '30px'}}>If the assignment rows are void, Please  check back later.</h5>
             </div>
 
             <div>

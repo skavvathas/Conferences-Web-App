@@ -1,21 +1,5 @@
 const db = require('../db/db');
 
-/*const insertPaper = async(req, res) => {
-    const {title, abstract} = req.body;
-
-    var sql = "INSERT INTO paper (title, abstract) VALUES (?,?,)";
-
-    try{
-        const result = await db.query(sql, [title, abstract] );
-
-        const [paper] = await db.query('SELECT * FROM paper WHERE title = ?', [title]);
-
-        res.status(200).json({ paper });
-    } catch(error){
-        res.status(400).json({ error: error.message });
-    }
-}*/
-
 const insertPaper = async (req, res) => {
     const { conferenceId, title, abstract } = req.body;
 
@@ -47,26 +31,6 @@ const insertPaper = async (req, res) => {
     }
 }
 
-
-/*const getPapersByConferenceId = async (req, res) => {
-    const { id } = req.params;
-
-    console.log("********conferenceId: ", id);
-
-    var sql = "SELECT * FROM conference WHERE conferenceId = ?";
-
-    try {
-        //const conferences = await db.query(sql, [id]);
-        const [papers] = await db.query(sql, [id]);
-        console.log("papers: ", papers);
-
-        res.status(200).json(papers);
-    } catch (error) {
-        console.log(error);
-        res.status(400).json({ error: error.message });
-    }
-};*/
-
 // get all the papers from a specific paper
 const getPapersByConferenceId = async (req, res) => {
     const { id } = req.params;
@@ -91,7 +55,6 @@ const getPapersByConferenceId = async (req, res) => {
 };
 
 const getPaper = async (req, res) => {
-    //const { id } = req.params;
     const { paperId } = req.body;
 
     console.log("**00**paperId: ", paperId/*id*/);

@@ -23,7 +23,6 @@ router.put("/edit", editUser)
 
 router.get("/getUserByUsername/:id", getUserByUsername)
 
-router.get("")
 
 
 

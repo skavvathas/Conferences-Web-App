@@ -17,7 +17,7 @@ async function checkConf(title) {
     }
 }
 
-const insertConf = async (req, res) => {
+const insertConference = async (req, res) => {
     const {userId, author, title, acronym, webpage, city, country, firstday, lastday, primaryarea, secondaryarea, organizer} = req.body;
 
     console.log("Hey: ", title);
@@ -63,7 +63,7 @@ const insertConf = async (req, res) => {
     }
 }
 
-const getConf = async (req, res) => {
+const getConference = async (req, res) => {
     const {name} = req.body;
 
     try {
@@ -122,4 +122,4 @@ const getConferenceById = async (req, res) => {
 };
 
 
-module.exports = { insertConf, getConf, getConferencesByAuthor, getConferenceById }
+module.exports = { insertConference, getConference, getConferencesByAuthor, getConferenceById }
