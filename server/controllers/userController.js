@@ -62,7 +62,7 @@ async function checkUsername(username) {
             return 1; // this username is not in the database
         }
     } catch (error) {
-        return 0;
+        //return 0;
         console.error('Error querying the database:', error);
         throw error; // You can handle or log the error as needed
     }
@@ -150,6 +150,8 @@ const registerUser = async (req, res) => {
         console.log(hash);
 
         const result = await db.query(sql, [firstName, lastName, email, username, hash] );
+
+        console.log("result in 154: ", result);
 
         const [user] = await db.query('SELECT * FROM users WHERE username = ?', [username]);
 

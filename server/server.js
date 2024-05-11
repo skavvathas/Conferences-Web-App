@@ -46,5 +46,5 @@ app.use("/api/recommendation", userRecommendation);
 //app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.listen(5000, function() {
-    console.log("Server started on port 4000!");
+    console.log("Server started on port 5000!");
 });

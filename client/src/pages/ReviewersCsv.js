@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import * as Papa from "papaparse";
-import { Button } from '@chakra-ui/react';
+import { Card, CardHeader, Flex, Avatar, Box, Heading, Text, IconButton, Button, CardBody, CardFooter } from '@chakra-ui/react';
+
 
 const CSVSelector = ({ onChange }) => {
   const handleFileChange = async (e) => {
@@ -66,8 +67,8 @@ const ReviewersCsv = () => {
         <div>
             <Header/>
             <div className="main" style={{height: "100vh"}}>
-                <h1>Add reviewers in conference {id} via CSV</h1>
-                <h3>The CSV should have these columns: [name, email]</h3>
+                <Heading style={{marginTop: "30px"}}>Add reviewers in conference {id} via CSV</Heading>
+                <h3 style={{marginBottom: "30px"}}>The CSV should have these columns: [name, email]</h3>
                 <CSVSelector onChange={handleCsvChange} />
                 {data.length > 0 && (
                     <table className="table">
