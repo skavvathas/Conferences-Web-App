@@ -1,27 +1,31 @@
 import './Home.css';
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { Card, CardHeader, CardBody, CardFooter, Heading, Text, Button, Flex } from '@chakra-ui/react'; // Import Card components from your UI library
 
 const About = () => {
   return (
     <div>
         <Header/>
         <div className="main" style={{ height: '100vh' }}>
-          <div className="container my-5">
-            <div className="p-5 text-center bg-body-tertiary rounded-3">
-              <h1 className="text-body-emphasis">About</h1>
-              <p className="col-lg-8 mx-auto fs-5 text-muted" style={{height: "8vh"}}>
-                Web-based Reccomendation System for Scientific Conferences.
-              </p>
-              <ul>
-                <li>The user can create a new conference</li>
-                <li>The user can view his old conferences</li>
-                <li>The user can add a new reviewer, to review a paper of the conference</li>
-                <li>The user can add a paper for review</li>
-                <li>The app will make a reccomendation for which reviewer could review which paper</li>
-              </ul>
-            </div>
-          </div>
+        <Flex direction="column" align="center" justify="center" wrap="wrap" style={{ paddingTop: '100px' }}>
+          <Card align='center' style={{backgroundColor: "#F8F8F8", border: '1px solid black'}}>
+            <CardHeader align="center" justify="center">
+              <Heading size='md'>Basic Infos About</Heading>
+              <Heading size='md'>Web based reccomendation system for scientific conferences</Heading>
+            </CardHeader>
+            <CardBody>
+              <Text>The user can create a new conference</Text>
+              <Text>The user can view his old conferences</Text>
+              <Text>The user can add a new reviewer, to review a paper of the conference</Text>
+              <Text>The user can add a paper for review</Text>
+              <Text>The app will make a reccomendation for which reviewer could review which paper</Text>
+            </CardBody>
+            <CardFooter>
+              <Button colorScheme='blue'>View here</Button>
+            </CardFooter>
+          </Card>
+        </Flex>
         </div>
         <Footer/>
     </div>

@@ -33,9 +33,9 @@ const Profile = () => {
             </CardHeader>
             
             <CardBody
-                bg="orange.100" // Set background color of CardBody
+                bg="grey.500" // Set background color of CardBody
                 transition="background-color 0.3s" // Add transition for smooth color change
-                _hover={{ bg: "orange.200" }} // Change background color on hover
+                _hover={{ bg: "blue.200" }} // Change background color on hover
             >
                 <Heading size='lg' _hover={{ color: "blue.600" }}>{user.user[0].firstName} {user.user[0].lastName}</Heading>
                 <Text>Username: {user.user[0].username} </Text>
