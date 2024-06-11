@@ -66,31 +66,36 @@ const ReviewersCsv = () => {
     return (
         <div>
             <Header/>
-            <div className="main" style={{height: "100vh"}}>
+            <Flex direction="column" align="center" justify="center" wrap="wrap" style={{ paddingBottom: '100px' }}>
                 <Heading style={{marginTop: "30px"}}>Add reviewers in conference {id} via CSV</Heading>
                 <h3 style={{marginBottom: "30px"}}>The CSV should have these columns: [name, email]</h3>
-                <CSVSelector onChange={handleCsvChange} />
-                {data.length > 0 && (
-                    <table className="table">
-                        <thead>
-                            <tr className="table-info">
-                                <th>Name</th>
-                                <th>Email</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {data.map((row, index) => (
-                                <tr key={index}>
-                                    <td>{row.name}</td>
-                                    <td>{row.email}</td>
+                <Flex justify="center" align="center">
+                    <CSVSelector onChange={handleCsvChange} />
+                    {data.length > 0 && (
+                        <table className="table">
+                            <thead>
+                                <tr className="table-info">
+                                    <th>Name</th>
+                                    <th>Email</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                )}
-                <Button type="submit" colorScheme='messenger' onClick={handleUpload}>Submit</Button>
+                            </thead>
+                            <tbody>
+                                {data.map((row, index) => (
+                                    <tr key={index}>
+                                        <td>{row.name}</td>
+                                        <td>{row.email}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
+                    <Button type="submit" colorScheme='messenger' onClick={handleUpload}>Submit</Button>
+                </Flex>
+            </Flex>
+            <div style={{paddingTop: "80%"}}>
+                <Footer />
             </div>
-            <Footer/>
+            
         </div>
     );
 };

@@ -1,7 +1,7 @@
 const db = require('../db/db');
 
 const insertReviewer = async (req, res) => {
-    const { conferenceId, email, name } = req.body;
+    const { conferenceId, name, email } = req.body;
 
     try {
         // Check if reviewer with the given email already exists
@@ -12,8 +12,8 @@ const insertReviewer = async (req, res) => {
         }
 
         // If reviewer doesn't exist, insert it into the database
-        const sql1 = "INSERT INTO reviewers (email, name) VALUES (?, ?)";
-        const result = await db.query(sql1, [email, name]);
+        const sql1 = "INSERT INTO reviewers (name, email) VALUES (?, ?)";
+        const result = await db.query(sql1, [name, email]);
 
         // Fetch the inserted reviewer
         const [reviewer] = await db.query('SELECT * FROM reviewers WHERE email = ?', [email]);

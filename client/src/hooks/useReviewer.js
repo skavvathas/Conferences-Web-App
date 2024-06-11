@@ -6,7 +6,7 @@ export const useReviewer = () =>{
     const [isLoading, setIsLoading] = useState(null);
     const { dispatch } = useAuthContext();
 
-    const insertReviewer = async (conferenceId, email, name, token) => {
+    const insertReviewer = async (conferenceId, name, email, token) => {
         setIsLoading(true)
         setError(null)
 
@@ -19,7 +19,7 @@ export const useReviewer = () =>{
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({conferenceId, email, name}) // in server side we use body.firstname, etc
+            body: JSON.stringify({conferenceId, name, email}) // in server side we use body.firstname, etc
         })
         const json = await response.json()
 

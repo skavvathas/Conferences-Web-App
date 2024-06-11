@@ -17,6 +17,8 @@ const Conf = () => {
     const { getPapersByConf } = usePaper();
     const [reviewers, setReviewers] = useState();
     const [papers, setPapers] = useState();
+    const [showAllPapers, setShowAllPapers] = useState(false);
+    const [showAllReviewers, setShowAllReviewers] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -61,6 +63,12 @@ const Conf = () => {
         navigate(`/paper/${paperId}`);
     };
 
+    const initialPapers = papers ? papers.slice(0, 10) : [];
+    const remainingPapers = papers ? papers.slice(10) : [];
+
+    const initialReviewers = reviewers ? reviewers.slice(0, 10) : [];
+    const remainingReviewers = reviewers ? reviewers.slice(10) : [];
+
     return (
         <Box>
             <Header />
@@ -80,21 +88,41 @@ const Conf = () => {
                             ) : (
                                 Array.isArray(papers) && papers.length > 0 ? (
                                     <Accordion allowToggle>
-                                        {papers.map(paper => (
+                                        {initialPapers.map(paper => (
                                             <AccordionItem key={paper.paperId}>
                                                 <h2>
                                                     <AccordionButton>
                                                         <Box as={RouterLink} to={`/paper/${paper.paperId}`} flex='1' textAlign='left'>
-                                                            {paper.title.length > 40 ? paper.title.substring(0, 40) + '...' : paper.title} {/* Displaying first 40 letters of title */}
+                                                            {paper.title.length > 40 ? paper.title.substring(0, 40) + '...' : paper.title}
                                                         </Box>
                                                         <AccordionIcon />
                                                     </AccordionButton>
                                                 </h2>
                                                 <AccordionPanel pb={4}>
-                                                    Abstract: {paper.abstract.length > 40 ? paper.abstract.substring(0, 40) + '...' : paper.abstract} {/* Displaying first 40 letters of abstract */}
+                                                    Abstract: {paper.abstract.length > 40 ? paper.abstract.substring(0, 40) + '...' : paper.abstract}
                                                 </AccordionPanel>
                                             </AccordionItem>
                                         ))}
+                                        {showAllPapers && remainingPapers.map(paper => (
+                                            <AccordionItem key={paper.paperId}>
+                                                <h2>
+                                                    <AccordionButton>
+                                                        <Box as={RouterLink} to={`/paper/${paper.paperId}`} flex='1' textAlign='left'>
+                                                            {paper.title.length > 40 ? paper.title.substring(0, 40) + '...' : paper.title}
+                                                        </Box>
+                                                        <AccordionIcon />
+                                                    </AccordionButton>
+                                                </h2>
+                                                <AccordionPanel pb={4}>
+                                                    Abstract: {paper.abstract.length > 40 ? paper.abstract.substring(0, 40) + '...' : paper.abstract}
+                                                </AccordionPanel>
+                                            </AccordionItem>
+                                        ))}
+                                        {papers.length > 10 && !showAllPapers && (
+                                            <Button onClick={() => setShowAllPapers(true)}>
+                                                Show {papers.length - 10} more papers
+                                            </Button>
+                                        )}
                                     </Accordion>
                                 ) : (
                                     <div>No papers to display.</div>
@@ -110,7 +138,7 @@ const Conf = () => {
                             ) : (
                                 Array.isArray(reviewers) && reviewers.length > 0 ? (
                                     <Accordion allowToggle>
-                                        {reviewers.map(reviewer => (
+                                        {initialReviewers.map(reviewer => (
                                             <AccordionItem key={reviewer.reviewerId}>
                                                 <h2>
                                                     <AccordionButton>
@@ -125,6 +153,26 @@ const Conf = () => {
                                                 </AccordionPanel>
                                             </AccordionItem>
                                         ))}
+                                        {showAllReviewers && remainingReviewers.map(reviewer => (
+                                            <AccordionItem key={reviewer.reviewerId}>
+                                                <h2>
+                                                    <AccordionButton>
+                                                        <Box as={RouterLink} flex='1' textAlign='left'>
+                                                            {reviewer.name}
+                                                        </Box>
+                                                        <AccordionIcon />
+                                                    </AccordionButton>
+                                                </h2>
+                                                <AccordionPanel pb={4}>
+                                                    Email: {reviewer.email}
+                                                </AccordionPanel>
+                                            </AccordionItem>
+                                        ))}
+                                        {reviewers.length > 10 && !showAllReviewers && (
+                                            <Button onClick={() => setShowAllReviewers(true)}>
+                                                Show {reviewers.length - 10} more reviewers
+                                            </Button>
+                                        )}
                                     </Accordion>
                                 ) : (
                                     <div>No reviewers to display.</div>
