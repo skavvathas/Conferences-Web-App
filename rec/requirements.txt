@@ -1,0 +1,8 @@
+pandas~=2.2.1
+regex~=2023.12.25
+tensorflow~=2.15.0.post1
+scikit-learn~=1.4.1.post1
+tensorflow-text~=2.15.0
+mysql-connector-python~=8.4.0
+fuzzywuzzy~=0.18.0
+numpy~=1.26.4

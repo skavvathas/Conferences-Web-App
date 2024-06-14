@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { useAuthContext } from "../hooks/useAuthContext";
 import { usePaper } from "../hooks/usePaper";
 import { useNavigate } from "react-router-dom";
-import { Button } from '@chakra-ui/react';
+import { Flex, Button, Heading } from '@chakra-ui/react';
 import * as Papa from "papaparse";
 
 const CSVSelector = ({ onChange }) => {
@@ -60,31 +60,36 @@ const PaperCsv = () => {
     return (
         <div>
             <Header/>
-            <div className="main" style={{ height: '100vh' }}>
-                <h1>Add papers in conference {id} via CSV</h1>
+            <Flex direction="column" align="center" justify="center" wrap="wrap" style={{ paddingBottom: '100px' }}>
+                <Heading style={{marginTop: "30px"}}>Add papers in conference {id} via CSV</Heading>
                 <h3>The CSV should have these columns: [title, abstract]</h3>
-                <CSVSelector onChange={handleCsvChange} />
-                {data.length > 0 && (
-                    <table className="table">
-                        <thead>
-                            <tr className="table-info">
-                                <th>Title</th>
-                                <th>Abstract</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {data.map((row, index) => (
-                                <tr key={index}>
-                                    <td>{row.title}</td>
-                                    <td>{row.abstract && row.abstract.length > 60 ? row.abstract.substring(0, 60) + '...' : row.abstract}</td>
+                <Flex justify="center" align="center" style={{marginLeft: "20%", marginRight: "20%"}}>
+                    {data.length > 0 && (
+                        <table className="table">
+                            <thead>
+                                <tr className="table-info">
+                                    <th>Title</th>
+                                    <th>Abstract</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                )}
+                            </thead>
+                            <tbody>
+                                {data.map((row, index) => (
+                                    <tr key={index}>
+                                        <td>{row.title}</td>
+                                        <td>{row.abstract && row.abstract.length > 60 ? row.abstract.substring(0, 60) + '...' : row.abstract}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
+                </Flex>
+                <CSVSelector onChange={handleCsvChange} />
                 <Button type="submit" colorScheme='messenger' onClick={handleUpload}>Submit</Button>
+            </Flex>
+            <div style={{paddingTop: "80%"}}>
+                <Footer />
             </div>
-            <Footer/>
+            
         </div>
     );
 };

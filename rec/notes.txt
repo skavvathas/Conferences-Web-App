@@ -1,0 +1,10 @@
+NOTES:
+
+1. put the dataset files inside the folder: data/alphabetical_researchers
+2. open a terminal in the app folder
+3. install python3
+4. pip3 install -r requirements.txt
+5. check that the SQL Server is up and running
+6. make appropriate changes in database variables inside main.py
+7. start the application: python3 main.py
+
