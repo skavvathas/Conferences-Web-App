@@ -9,7 +9,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import * as XLSX from 'xlsx';
 
 const Recommendation = () => {
-  const { recommendation, isLoading, error } = useRecommendation();
+  const { recommendation, startRecommendation, isLoading, error } = useRecommendation();
   const { id } = useParams();
   const { user } = useAuthContext();
   const [data, setData] = useState(); // Declare data state
@@ -20,7 +20,9 @@ const Recommendation = () => {
     const fetchData = async () => { // Define an asynchronous function
       try {
         console.log("Fetching data...");
+        await startRecommendation(id, user.token);
         const newData = await recommendation(id, user.token);
+        
         setData(newData);
         console.log("Data fetched:", newData);
       } catch (error) {

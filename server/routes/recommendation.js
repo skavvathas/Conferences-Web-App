@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { getAssignmentByReviewer } = require("../controllers/recommendationController");
+const { getAssignmentByReviewer, startRecommendation } = require("../controllers/recommendationController");
 
 const router = express.Router();
 
@@ -9,6 +9,8 @@ router.use(requireAuth);
 
 
 router.post("/getRec", getAssignmentByReviewer)
+
+router.post("/startRec", startRecommendation)
 
 
 module.exports = router

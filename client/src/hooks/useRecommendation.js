@@ -39,5 +39,37 @@ export const useRecommendation = () => {
         }
     }
 
-    return { recommendation, isLoading, error }
+    const startRecommendation = async (conferenceId, token) => {
+        setIsLoading(true)
+        setError(null)
+
+        console.log("Hiiiiiiii2222222");
+
+        const response = await fetch('/api/recommendation/startRec', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ conferenceId }) // in server side we use body.firstname, etc
+        })
+
+        const json = await response.json();
+
+        console.log("useRec json: ", json);
+
+        if (!response.ok) {
+            setIsLoading(false)
+            setError(json.error)
+        }
+
+        if (response.ok) {
+            // update loading state
+            setIsLoading(false)
+
+            return json;
+        }
+    }
+
+    return { recommendation, startRecommendation, isLoading, error }
 }
