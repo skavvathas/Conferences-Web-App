@@ -17,9 +17,9 @@ from reviewer import Reviewer
 
 # Database information
 host = 'localhost'
-database = 'conference'
-user = 'root'
-password = 'spirosmysql01'
+database = 'Put_your_own_database'
+user = 'Put_your_own_user'
+password = 'Put_your_own_password'
 # create the object for the database
 db_object = DButils(host, database, user, password)
 
